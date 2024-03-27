@@ -18,12 +18,16 @@ const config: Config = {
         sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
       },
       borderRadius: {
-        "4xl": "32px",
-        "5xl": "48px",
+        "4xl": "2rem",
+        "5xl": "3rem",
       },
       spacing: {
         "4.5": "1.125rem",
         "7.5": "1.875rem",
+        "12.5": "3.125rem",
+        "17.5": "4.375rem",
+        "45": "11.25rem",
+        "57.5": "14.375rem",
       },
     },
   },
