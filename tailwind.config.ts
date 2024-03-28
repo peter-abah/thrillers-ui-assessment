@@ -8,7 +8,47 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    keyframes: {
+      scaleXOpen: {
+        from: {
+          transform: "scaleX(0)",
+        },
+        to: {
+          transform: "scaleX(1)",
+        },
+      },
+      scaleXClose: {
+        from: {
+          transform: "scaleX(1)",
+        },
+        to: {
+          transform: "scaleX(0)",
+        },
+      },
+      fadeIn: {
+        from: {
+          opacity: "0",
+        },
+        to: {
+          opacity: "1",
+        },
+      },
+      fadeOut: {
+        from: {
+          opacity: "1",
+        },
+        to: {
+          opacity: "0",
+        },
+      },
+    },
     extend: {
+      animation: {
+        scaleXOpen: "scaleXOpen 500ms var(--ease-out-sine)",
+        scaleXClose: "scaleXClose 500ms var(--ease-out-sine)",
+        fadeIn: "fadeIn 500ms var(--ease-out-sine)",
+        fadeOut: "fadeOut 500ms var(--ease-out-sine)",
+      },
       colors: {
         primary: "rgb(var(--color-primary) / <alpha-value>)",
         "primary-dark": "rgb(var(--color-primary-dark) / <alpha-value>)",

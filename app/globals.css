@@ -7,6 +7,7 @@
   --color-primary-dark: 61 86 84;
   --color-main-bg: 225 236 235;
   --color-accent: 201 156 51;
+  --ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 @layer utilities {
