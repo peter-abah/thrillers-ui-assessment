@@ -36,6 +36,10 @@ const config: Config = {
         "30": "7.5rem",
         "45": "11.25rem",
         "57.5": "14.375rem",
+        "100": "25rem",
+      },
+      screens: {
+        lg: "1040px",
       },
     },
   },

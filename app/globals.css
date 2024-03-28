@@ -30,3 +30,36 @@
 * {
   min-width: 0;
 }
+
+nav::-webkit-scrollbar {
+  width: 4px;
+}
+nav::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+nav::-webkit-scrollbar-thumb {
+  background: #3335;
+  border-radius: 9999px;
+}
+
+.grid-cols-search {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (min-width: 768px) {
+  .grid-cols-search {
+    grid-template-columns: 1fr 12rem;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .grid-cols-search {
+    grid-template-columns: 1fr 12rem 12rem;
+  }
+}
+
+@media screen and (min-width: 1580px) {
+  .grid-cols-search {
+    grid-template-columns: 1fr 14.375rem 14.375rem;
+  }
+}

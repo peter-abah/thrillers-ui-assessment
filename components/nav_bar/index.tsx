@@ -1,16 +1,11 @@
+"use client";
+
+import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
-import { IconType } from "react-icons";
-import { AiOutlinePieChart as StatsIcon } from "react-icons/ai";
-import {
-  IoHomeOutline as HomeIcon,
-  IoNewspaperOutline as PaperIcon,
-  IoSettingsOutline as SettingsIcon,
-} from "react-icons/io5";
-import { LuWallet as WalletIcon } from "react-icons/lu";
-import { PiAirplaneTiltLight as PlaneIcon } from "react-icons/pi";
-import { RiContractLeftRightFill as DefaultIcon } from "react-icons/ri";
+import { ReactNode } from "react";
+import { MdClose as CloseIcon, MdMenu as MenuIcon } from "react-icons/md";
 import MapIcon from "../icons/map";
-import NavLink from "./nav_link";
+import NavItem from "./nav_item";
 
 const user = {
   name: "Alex Johnson",
@@ -45,85 +40,98 @@ const NAV_LINKS = [
   },
 ];
 
-const URL_TO_ICON_COMPONENT: Record<string, IconType> = {
-  "/dashboard": HomeIcon,
-  "/": PlaneIcon,
-  "/reports": PaperIcon,
-  "/wallet": WalletIcon,
-  "/stats": StatsIcon,
-  "/settings": SettingsIcon,
-};
-export default function NavBar() {
+export default function NavWrapper() {
   return (
-    <nav className="w-[350px] fixed top-0 left-0 h-screen overflow-y-auto bg-primary z-50 text-white rounded-r-5xl">
-      <div className="w-full aspect-square flex flex-col justify-center items-center gap-5 bg-primary-dark z-20">
-        <div className="rounded-full grid place-items-center bg-primary-dark w-28.5 h-28.5 relative before:absolute before:w-30 before:h-30 before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:conic-gradient before:rounded-full">
-          <span className="absolute w-full h-full top-1/2 left-1/2 bg-primary-dark rounded-full -translate-x-1/2 -translate-y-1/2"></span>
-          <div className="w-25 h-25 relative">
-            <Image src={user.profileImageURL} alt={user.name} fill className="rounded-full" />
-          </div>
+    <>
+      {/* For mobile and Tablets */}
+      <Dialog.Root modal>
+        <div className="sticky top-0 bg-main-bg sm:bg-transparent sm:w-fit z-50">
+          <Dialog.Trigger className="p-4 sm:p-6 rounded-lg text-primary h-fit w-fit xl:hidden sm:my-8">
+            <MenuIcon className="w-8 h-8 sm:w-10 sm:h-10" />
+          </Dialog.Trigger>
         </div>
+        <Dialog.Portal>
+          <Dialog.Content asChild>
+            <NavBar
+              closeBtn={
+                <Dialog.Close className="absolute p-4 sm:p-6 rounded-lg text-white h-fit left-0 top-0 sm:top-8 z-50">
+                  <CloseIcon className="w-10 h-10" />
+                </Dialog.Close>
+              }
+            />
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
 
-        <p className="uppercase text-xl font-bold">{user.name}</p>
-        <p className="lowercase font-bold text-sm">{user.email}</p>
+      {/* For Desktops */}
+      <div className="hidden xl:block">
+        <NavBar />
       </div>
+    </>
+  );
+}
 
-      <ul className="pl-4.5 pt-6">
-        {NAV_LINKS.map((link) => {
-          const IconComponent = URL_TO_ICON_COMPONENT[link.url] || DefaultIcon;
-          return (
-            <li key={link.name}>
-              <NavLink
-                href={link.url}
-                className="group relative rounded-l-5xl data-[is-active=true]:bg-main-bg data-[is-active=true]:text-primary flex gap-7.5 px-8 py-6 items-center bg-primary"
-              >
-                <span className="absolute hidden group-[[data-is-active=true]]:block bg-main-bg h-full w-24 -top-full right-0 before:absolute before:w-full before:h-full origin-right before:top-0 z-10 before:z-20 before:left-0 before:rounded-br-5xl before:bg-primary"></span>
-                <span className="absolute hidden group-[[data-is-active=true]]:block bg-main-bg h-full w-24 -bottom-full right-0 before:absolute before:w-full before:h-full origin-right before:top-0 z-10 before:left-0 before:rounded-tr-5xl before:bg-primary"></span>
-                <IconComponent className="w-7.5 h-7.5 text-accent" />
-                <span className="uppercase">{link.name}</span>
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
+function NavBar({ closeBtn }: { closeBtn?: ReactNode }) {
+  return (
+    <nav className="w-[315px] 2xl:w-[350px] fixed top-0 left-0 h-screen overflow-y-auto z-50 ">
+      {closeBtn}
+      <div className="rounded-r-5xl bg-primary text-white overflow-hidden min-h-screen">
+        <div className="w-full aspect-square flex flex-col justify-center items-center gap-5 bg-primary-dark">
+          <div className="rounded-full grid place-items-center bg-primary-dark w-28.5 h-28.5 relative before:absolute before:w-30 before:h-30 before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:conic-gradient before:rounded-full">
+            <span className="absolute w-full h-full top-1/2 left-1/2 bg-primary-dark rounded-full -translate-x-1/2 -translate-y-1/2"></span>
+            <div className="w-25 h-25 relative">
+              <Image src={user.profileImageURL} alt={user.name} fill className="rounded-full" />
+            </div>
+          </div>
 
-      <div className="pl-12 pr-14 py-9">
-        <p className="uppercase text-accent font-semibold mb-8">Active Users</p>
-        <div aria-hidden className="flex mb-7">
-          <Image
-            src="/images/woman.jpeg"
-            alt=""
-            width={64}
-            height={64}
-            className="rounded-full border-4 border-primary"
-          />
-          <Image
-            src="/images/man-1.jpg"
-            alt=""
-            width={64}
-            height={64}
-            className="rounded-full border-4 border-primary -ml-4"
-          />
-          <Image
-            src="/images/man-2.jpg"
-            alt=""
-            width={64}
-            height={64}
-            className="rounded-full border-4 border-primary -ml-4"
-          />
-          <Image
-            src="/images/man-3.jpg"
-            alt=""
-            width={64}
-            height={64}
-            className="rounded-full border-4 border-primary -ml-4"
-          />
-          <span className="-ml-4 w-16 h-16 bg-accent text-white grid place-items-center rounded-full border-4 border-primary font-semibold">
-            +70
-          </span>
+          <h1 className="uppercase text-xl font-bold">{user.name}</h1>
+          <p className="lowercase font-bold text-sm">{user.email}</p>
         </div>
 
-        <MapIcon className="w-full text-main-bg/50" />
+        <ul className="pl-4.5 pt-4 2xl:pt-6">
+          {NAV_LINKS.map((item) => (
+            <NavItem item={item} key={item.url} />
+          ))}
+        </ul>
+
+        <div className="px-8 2xl:pl-12 2xl:pr-14 pt-5 pb-9 2xl:py-9">
+          <p className="uppercase text-accent font-semibold mb-8">Active Users</p>
+          <div aria-hidden className="flex mb-7">
+            <Image
+              src="/images/woman.jpeg"
+              alt=""
+              width={64}
+              height={64}
+              className="rounded-full border-[3px] border-primary"
+            />
+            <Image
+              src="/images/man-1.jpg"
+              alt=""
+              width={64}
+              height={64}
+              className="rounded-full border-[3px] border-primary -ml-4"
+            />
+            <Image
+              src="/images/man-2.jpg"
+              alt=""
+              width={64}
+              height={64}
+              className="rounded-full border-[3px] border-primary -ml-4"
+            />
+            <Image
+              src="/images/man-3.jpg"
+              alt=""
+              width={64}
+              height={64}
+              className="rounded-full border-[3px] border-primary -ml-4"
+            />
+            <span className="-ml-4 w-16 h-16 bg-accent text-white grid place-items-center rounded-full border-[3px] border-primary font-semibold">
+              +70
+            </span>
+          </div>
+
+          <MapIcon className="w-full text-main-bg/50" />
+        </div>
       </div>
     </nav>
   );

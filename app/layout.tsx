@@ -17,9 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-main-bg text-primary">
+      <body className="bg-main-bg text-primary flex flex-col sm:flex-row">
         <NavBar />
-        <main className="px-12.5 pt-10 pb-10 ml-[350px]">{children}</main>
+        <main className="px-4 md:px-8 2xl:px-12.5 py-2 sm:py-8 xl:py-10 xl:ml-[315px] 2xl:ml-[350px] w-full">
+          <div className="max-w-[1250px] mx-auto">{children}</div>
+        </main>
       </body>
     </html>
   );
