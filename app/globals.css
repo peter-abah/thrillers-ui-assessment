@@ -4,6 +4,7 @@
 
 :root {
   --color-primary: 66 92 90;
+  --color-primary-dark: 61 86 84;
   --color-main-bg: 225 236 235;
   --color-accent: 201 156 51;
 }
@@ -11,6 +12,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .dashed {
+    background: repeating-linear-gradient(90deg, rgb(var(--color-main-bg)) 0 9px, #0000 0 14px);
+  }
+
+  .clip-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   }
 }
 
