@@ -21,6 +21,10 @@
   .clip-triangle {
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   }
+
+  .conic-gradient {
+    background: conic-gradient(rgb(var(--color-accent)), rgb(var(--color-accent) / 0));
+  }
 }
 
 * {
