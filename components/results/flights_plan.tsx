@@ -3,17 +3,17 @@ import MapIcon from "../icons/map";
 
 export default function FlightPlan({ flight }: { flight: Flight }) {
   return (
-    <div className="col-span-4 max-w-100  w-full mx-auto lg:mx-0 rounded-5xl overflow-hidden bg-primary-dark h-fit">
+    <div className="col-span-4 max-w-100  w-full mx-auto lg:mx-0 rounded-5xl overflow-hidden bg-primary-dark h-fit animate-fadeIn">
       <div className="bg-primary text-white pt-12.5 2xl:pb-12.5">
         <div className="uppercase flex items-center justify-between gap-6 px-6 2xl:px-7.5 mb-12 2xl:mb-16">
           <p className="flex flex-col items-center gap-2 2xl:gap-4">
             <span>FROM</span>
-            <span className="text-2xl">{flight.from}</span>
+            <span className="text-2xl font-medium">{flight.from}</span>
           </p>
-          <p>{flight.stops === 0 ? "non stop" : "more stop"}</p>
+          <p>{flight.stops === 0 ? "non-stop" : "more stop"}</p>
           <p className="flex flex-col items-center gap-2 2xl:gap-4">
             <span>TO</span>
-            <span className="text-2xl">{flight.to}</span>
+            <span className="text-2xl font-medium">{flight.to}</span>
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export default function FlightPlan({ flight }: { flight: Flight }) {
           </span>
         </div>
 
-        <div className="pb-20">
+        <div className="pb-25">
           <p className="uppercase mb-4 text-xs">Price</p>
           <PriceSlider />
         </div>

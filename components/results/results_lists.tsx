@@ -12,13 +12,13 @@ const AIRLINE_TO_ICON_COMPONENT: Record<string, IconComponent> = {
 
 export default function ResultsList() {
   return (
-    <ul className="col-span-8 lg:mr-8">
+    <ul className="col-span-8 lg:mr-8 animate-fadeIn">
       {FLIGHTS.map((flight) => {
         const AirlineComponent = AIRLINE_TO_ICON_COMPONENT[flight.airline] || EmiratesIcon;
         return (
           <li
             key={flight.id}
-            className="relative py-6 sm:py-10 2xl:pt-14 px-6 2xl:pl-7.5 2xl:pr-12.5 bg-white flex items-center justify-between first:rounded-t-5xl last:rounded-b-5xl uppercase group flex-wrap sm:flex-nowrap sm:[&>*]:order-none"
+            className="relative py-6 sm:py-10 2xl:pt-14 px-6 2xl:pl-7.5 2xl:pr-12.5 bg-white flex items-center justify-between first:rounded-t-5xl last:rounded-b-5xl uppercase group flex-wrap sm:flex-nowrap sm:[&>*]:order-none font-medium"
           >
             {/* INVERTED BORDER RADIUS */}
             <span className="w-8 h-8 rounded-2xl bg-main-bg absolute -top-4 -left-4"></span>
@@ -34,7 +34,7 @@ export default function ResultsList() {
             </div>
 
             <div className="flex flex-col gap-4 sm:gap-7 mr-2 sm:mr-8 2xl:mr-12.5 items-center order-3">
-              <p className="text-lg sm:text-2xl">{flight.from}</p>
+              <p className="text-lg sm:text-2xl font-medium">{flight.from}</p>
               <p className="text-sm">{flight.departureTime}</p>
             </div>
 
@@ -47,7 +47,7 @@ export default function ResultsList() {
             </div>
 
             <div className="flex flex-col gap-4 sm:gap-7 mr-2 sm:mr-8 2xl:mr-12.5 items-center order-4">
-              <p className="text-lg sm:text-2xl">{flight.to}</p>
+              <p className="text-lg sm:text-2xl font-medium">{flight.to}</p>
               <p className="text-sm">{flight.arrivalTime}</p>
             </div>
 
